@@ -1,7 +1,5 @@
 package com.revature.models;
 
-import java.text.SimpleDateFormat;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 public class User {
 	
-	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
+	//SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 	
 	@Id
 	@Column(name = "user_id")
@@ -22,9 +20,6 @@ public class User {
 	
 	@Column(name = "username")
 	private String username;
-	
-	@Column(name = "password")
-	private String password;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -37,10 +32,31 @@ public class User {
 	
 	@Column(name = "created")
 	private String created;
+	
+	@Column(name = "password")
+	private String password;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public User(int userId, String username, String firstName, String lastName, String email, String created,
+			String password) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.created = created;
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", created=" + created + ", password=" + password + "]";
 	}
 
 	@Override
@@ -51,6 +67,7 @@ public class User {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -85,6 +102,11 @@ public class User {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (userId != other.userId)
 			return false;
 		if (username == null) {
@@ -93,16 +115,6 @@ public class User {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	public User(int userId, String username, String firstName, String lastName, String email, String created) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.created = created;
 	}
 
 	public int getUserId() {
@@ -153,11 +165,11 @@ public class User {
 		this.created = created;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", created=" + created + "]";
+	public String getPassword() {
+		return password;
 	}
-	
-	
+
+	public void setPassword(String password) {
+		this.password = password;
+	}	
 }
