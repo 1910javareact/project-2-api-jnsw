@@ -11,8 +11,6 @@ import javax.persistence.Table;
 @Entity
 public class User {
 	
-	//SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
-	
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
