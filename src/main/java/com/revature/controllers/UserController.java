@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.User;
@@ -22,9 +22,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public User login(@RequestBody String username, @RequestBody String password, HttpServletRequest req) {
+	public User login(@RequestParam String username, @RequestParam String password, HttpServletRequest req) {
 		User u = us.getUserByUsernameAndPassword(username, password);
-		//req.getSession().setAttribute("user", u);
+		req.getSession().setAttribute("user", u);
 		return u;
 	}
 }
