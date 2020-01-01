@@ -21,6 +21,11 @@ public class UserController {
 		this.us = us;
 	}
 	
+	@GetMapping("{id}")
+	public User findUserById(@PathVariable int id) {
+		return us.findUserById(id);
+	}
+	
 	@PostMapping("/login")
 	public User login(@RequestParam String username, @RequestParam String password, HttpServletRequest req) {
 		User u = us.getUserByUsernameAndPassword(username, password);
