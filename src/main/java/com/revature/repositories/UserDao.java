@@ -7,4 +7,6 @@ import com.revature.models.User;
 public interface UserDao extends JpaRepository<User, Integer>{
 	//@Query("FROM User")
 	public User findUserByUsernameAndPassword(String username, String password);
+	
+	public User findByName(String name);
 }
