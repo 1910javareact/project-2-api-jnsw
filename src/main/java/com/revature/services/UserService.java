@@ -5,5 +5,5 @@ import com.revature.models.User;
 public interface UserService {
 	public User getUserByUsernameAndPassword(String username, String password);
 	
-	public Bear findBearById(int id);
+	public Bear findUserById(int id);
 }
