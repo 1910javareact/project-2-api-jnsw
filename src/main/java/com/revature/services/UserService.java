@@ -7,5 +7,5 @@ public interface UserService {
 	
 	public User findUserById(int id);
 
-	public User insertUser(User input);
+	public User save(User input);
 }

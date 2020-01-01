@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +38,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public User register(@RequestBody User input) {
-		User u = us.insertUser(input);
+	public User register(@Valid @RequestBody User input) {
+		User u = us.save(input);
 		return u;
 	}
 }

@@ -1,11 +1,15 @@
 package com.revature.models;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Table(name = "user", schema = "TopChat")
 @Entity
@@ -28,8 +32,9 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	@Column(name = "created")
-	private String created;
+	private Date created;
 	
 	@Column(name = "password")
 	private String password;
@@ -39,7 +44,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int userId, String username, String firstName, String lastName, String email, String created,
+	public User(int userId, String username, String firstName, String lastName, String email, Date created,
 			String password) {
 		super();
 		this.userId = userId;
@@ -155,11 +160,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(String created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
@@ -169,5 +174,5 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
 }
