@@ -27,24 +27,35 @@ public class Board {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "topic", referencedColumnName = "topic_id")
-	private Board board;
+	private Topic topic;
 
-	/**
-	 * 
-	 */
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Board(int boardId, String primartyInfo, String created, Topic topic) {
+		super();
+		this.boardId = boardId;
+		this.primartyInfo = primartyInfo;
+		this.created = created;
+		this.topic = topic;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [boardId=" + boardId + ", primartyInfo=" + primartyInfo + ", created=" + created + ", topic="
+				+ topic + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((board == null) ? 0 : board.hashCode());
 		result = prime * result + boardId;
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + ((primartyInfo == null) ? 0 : primartyInfo.hashCode());
+		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
 		return result;
 	}
 
@@ -57,11 +68,6 @@ public class Board {
 		if (getClass() != obj.getClass())
 			return false;
 		Board other = (Board) obj;
-		if (board == null) {
-			if (other.board != null)
-				return false;
-		} else if (!board.equals(other.board))
-			return false;
 		if (boardId != other.boardId)
 			return false;
 		if (created == null) {
@@ -74,21 +80,12 @@ public class Board {
 				return false;
 		} else if (!primartyInfo.equals(other.primartyInfo))
 			return false;
+		if (topic == null) {
+			if (other.topic != null)
+				return false;
+		} else if (!topic.equals(other.topic))
+			return false;
 		return true;
-	}
-
-	/**
-	 * @param boardId
-	 * @param primartyInfo
-	 * @param created
-	 * @param board
-	 */
-	public Board(int boardId, String primartyInfo, String created, Board board) {
-		super();
-		this.boardId = boardId;
-		this.primartyInfo = primartyInfo;
-		this.created = created;
-		this.board = board;
 	}
 
 	public int getBoardId() {
@@ -115,22 +112,11 @@ public class Board {
 		this.created = created;
 	}
 
-	public Board getBoard() {
-		return board;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setBoard(Board board) {
-		this.board = board;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
-
-	@Override
-	public String toString() {
-		return "Board [boardId=" + boardId + ", primartyInfo=" + primartyInfo + ", created=" + created + ", board="
-				+ board + ", hashCode()=" + hashCode() + ", getBoardId()=" + getBoardId() + ", getPrimartyInfo()="
-				+ getPrimartyInfo() + ", getCreated()=" + getCreated() + ", getBoard()=" + getBoard() + ", getClass()="
-				+ getClass() + ", toString()=" + super.toString() + "]";
-	}
-	
-	
-
 }

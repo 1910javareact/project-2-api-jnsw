@@ -25,7 +25,13 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findUserById(int id) {
 		// TODO Auto-generated method stub
-		return us.getOne(id);
+		return ud.findUserByUserId(id);
+	}
+
+	@Override
+	public User insertUser(User input) {
+		// TODO Auto-generated method stub
+		return ud.insertUser(input);
 	}
 
 }

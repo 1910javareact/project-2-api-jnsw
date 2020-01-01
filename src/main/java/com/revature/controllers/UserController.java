@@ -3,7 +3,10 @@ package com.revature.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +24,7 @@ public class UserController {
 		this.us = us;
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/user/{id}")
 	public User findUserById(@PathVariable int id) {
 		return us.findUserById(id);
 	}
@@ -30,6 +33,12 @@ public class UserController {
 	public User login(@RequestParam String username, @RequestParam String password, HttpServletRequest req) {
 		User u = us.getUserByUsernameAndPassword(username, password);
 		req.getSession().setAttribute("user", u);
+		return u;
+	}
+	
+	@PostMapping("/register")
+	public User register(@RequestBody User input) {
+		User u = us.insertUser(input);
 		return u;
 	}
 }

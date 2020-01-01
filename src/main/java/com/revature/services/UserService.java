@@ -6,4 +6,6 @@ public interface UserService {
 	public User getUserByUsernameAndPassword(String username, String password);
 	
 	public User findUserById(int id);
+
+	public User insertUser(User input);
 }
