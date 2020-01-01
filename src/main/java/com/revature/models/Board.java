@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Table(name = "board", schema="TopChat")
 @Entity
@@ -22,30 +26,31 @@ public class Board {
 	@Column(name = "primary_info")
 	private String primartyInfo;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "created")
-	private String created;
+	private Date created;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "topic", referencedColumnName = "topic_id")
-	private Topic topic;
+	@JoinColumn(name = "topicId", referencedColumnName = "topic_id")
+	private Topic topicId;
 
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int boardId, String primartyInfo, String created, Topic topic) {
+	public Board(int boardId, String primartyInfo, Date created, Topic topicId) {
 		super();
 		this.boardId = boardId;
 		this.primartyInfo = primartyInfo;
 		this.created = created;
-		this.topic = topic;
+		this.topicId = topicId;
 	}
 
 	@Override
 	public String toString() {
-		return "Board [boardId=" + boardId + ", primartyInfo=" + primartyInfo + ", created=" + created + ", topic="
-				+ topic + "]";
+		return "Board [boardId=" + boardId + ", primartyInfo=" + primartyInfo + ", created=" + created + ", topicId="
+				+ topicId + "]";
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class Board {
 		result = prime * result + boardId;
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + ((primartyInfo == null) ? 0 : primartyInfo.hashCode());
-		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
+		result = prime * result + ((topicId == null) ? 0 : topicId.hashCode());
 		return result;
 	}
 
@@ -80,10 +85,10 @@ public class Board {
 				return false;
 		} else if (!primartyInfo.equals(other.primartyInfo))
 			return false;
-		if (topic == null) {
-			if (other.topic != null)
+		if (topicId == null) {
+			if (other.topicId != null)
 				return false;
-		} else if (!topic.equals(other.topic))
+		} else if (!topicId.equals(other.topicId))
 			return false;
 		return true;
 	}
@@ -104,19 +109,19 @@ public class Board {
 		this.primartyInfo = primartyInfo;
 	}
 
-	public String getCreated() {
+	public Date getCreated() {
 		return created;
 	}
 
-	public void setCreated(String created) {
+	public void setCreated(Date created) {
 		this.created = created;
 	}
 
-	public Topic getTopic() {
-		return topic;
+	public Topic getTopicId() {
+		return topicId;
 	}
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
+	public void setTopicId(Topic topicId) {
+		this.topicId = topicId;
 	}
 }
