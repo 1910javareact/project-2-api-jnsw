@@ -24,7 +24,7 @@ public class Board {
 	private int boardId;
 	
 	@Column(name = "primary_info")
-	private String primartyInfo;
+	private String primaryInfo;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "created")
@@ -33,24 +33,16 @@ public class Board {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "topicId", referencedColumnName = "topic_id")
 	private Topic topicId;
+	
+	@Column(name="board_name")
+	private String boardName;
 
+	/**
+	 * 
+	 */
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Board(int boardId, String primartyInfo, Date created, Topic topicId) {
-		super();
-		this.boardId = boardId;
-		this.primartyInfo = primartyInfo;
-		this.created = created;
-		this.topicId = topicId;
-	}
-
-	@Override
-	public String toString() {
-		return "Board [boardId=" + boardId + ", primartyInfo=" + primartyInfo + ", created=" + created + ", topicId="
-				+ topicId + "]";
 	}
 
 	@Override
@@ -58,8 +50,9 @@ public class Board {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + boardId;
+		result = prime * result + ((boardName == null) ? 0 : boardName.hashCode());
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
-		result = prime * result + ((primartyInfo == null) ? 0 : primartyInfo.hashCode());
+		result = prime * result + ((primaryInfo == null) ? 0 : primaryInfo.hashCode());
 		result = prime * result + ((topicId == null) ? 0 : topicId.hashCode());
 		return result;
 	}
@@ -75,15 +68,20 @@ public class Board {
 		Board other = (Board) obj;
 		if (boardId != other.boardId)
 			return false;
+		if (boardName == null) {
+			if (other.boardName != null)
+				return false;
+		} else if (!boardName.equals(other.boardName))
+			return false;
 		if (created == null) {
 			if (other.created != null)
 				return false;
 		} else if (!created.equals(other.created))
 			return false;
-		if (primartyInfo == null) {
-			if (other.primartyInfo != null)
+		if (primaryInfo == null) {
+			if (other.primaryInfo != null)
 				return false;
-		} else if (!primartyInfo.equals(other.primartyInfo))
+		} else if (!primaryInfo.equals(other.primaryInfo))
 			return false;
 		if (topicId == null) {
 			if (other.topicId != null)
@@ -91,6 +89,22 @@ public class Board {
 		} else if (!topicId.equals(other.topicId))
 			return false;
 		return true;
+	}
+
+	/**
+	 * @param boardId
+	 * @param primaryInfo
+	 * @param created
+	 * @param topicId
+	 * @param boardName
+	 */
+	public Board(int boardId, String primaryInfo, Date created, Topic topicId, String boardName) {
+		super();
+		this.boardId = boardId;
+		this.primaryInfo = primaryInfo;
+		this.created = created;
+		this.topicId = topicId;
+		this.boardName = boardName;
 	}
 
 	public int getBoardId() {
@@ -101,12 +115,12 @@ public class Board {
 		this.boardId = boardId;
 	}
 
-	public String getPrimartyInfo() {
-		return primartyInfo;
+	public String getPrimaryInfo() {
+		return primaryInfo;
 	}
 
-	public void setPrimartyInfo(String primartyInfo) {
-		this.primartyInfo = primartyInfo;
+	public void setPrimaryInfo(String primaryInfo) {
+		this.primaryInfo = primaryInfo;
 	}
 
 	public Date getCreated() {
@@ -124,4 +138,22 @@ public class Board {
 	public void setTopicId(Topic topicId) {
 		this.topicId = topicId;
 	}
+
+	public String getBoardName() {
+		return boardName;
+	}
+
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [boardId=" + boardId + ", primaryInfo=" + primaryInfo + ", created=" + created + ", topicId="
+				+ topicId + ", boardName=" + boardName + ", hashCode()=" + hashCode() + ", getBoardId()=" + getBoardId()
+				+ ", getPrimaryInfo()=" + getPrimaryInfo() + ", getCreated()=" + getCreated() + ", getTopicId()="
+				+ getTopicId() + ", getBoardName()=" + getBoardName() + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
+	}
+	
 }
