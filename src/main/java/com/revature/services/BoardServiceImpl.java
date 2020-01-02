@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,12 @@ public class BoardServiceImpl implements BoardService {
 	public Board save(Board input) {
 		// TODO Auto-generated method stub
 		return bd.save(input);
+	}
+
+	@Override
+	public List<Board> getAllBoards() {
+		// TODO Auto-generated method stub
+		return bd.findAll();
 	}
 
 }
