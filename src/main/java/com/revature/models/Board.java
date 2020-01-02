@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Board {
 	
 	@Id
-	@Column(name = "board_id")
+	@Column(name = "boardId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int boardId;
 	
-	@Column(name = "primary_info")
+	@Column(name = "primaryInfo")
 	private String primaryInfo;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -34,7 +34,7 @@ public class Board {
 	@JoinColumn(name = "topicId", referencedColumnName = "topic_id")
 	private Topic topicId;
 	
-	@Column(name="board_name")
+	@Column(name="boardName")
 	private String boardName;
 
 	/**
