@@ -16,6 +16,7 @@ import com.revature.services.BoardService;
 
 @RestController
 @RequestMapping("board")
+
 public class BoardController {
 	private BoardService bs;
 	

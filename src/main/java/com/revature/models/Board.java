@@ -12,10 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "board", schema="TopChat")
 @Entity
+@JsonFilter("depth_4")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Board {
 	
 	@Id
@@ -31,8 +35,8 @@ public class Board {
 	private Date created;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "topicId", referencedColumnName = "topic_id")
-	private Topic topicId;
+	@JoinColumn(name = "topic", referencedColumnName = "topic_id")
+	private Topic topic;
 	
 	@Column(name="board_name")
 	private String boardName;
@@ -53,7 +57,7 @@ public class Board {
 		result = prime * result + ((boardName == null) ? 0 : boardName.hashCode());
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + ((primaryInfo == null) ? 0 : primaryInfo.hashCode());
-		result = prime * result + ((topicId == null) ? 0 : topicId.hashCode());
+		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
 		return result;
 	}
 
@@ -83,10 +87,10 @@ public class Board {
 				return false;
 		} else if (!primaryInfo.equals(other.primaryInfo))
 			return false;
-		if (topicId == null) {
-			if (other.topicId != null)
+		if (topic == null) {
+			if (other.topic != null)
 				return false;
-		} else if (!topicId.equals(other.topicId))
+		} else if (!topic.equals(other.topic))
 			return false;
 		return true;
 	}
@@ -95,15 +99,15 @@ public class Board {
 	 * @param boardId
 	 * @param primaryInfo
 	 * @param created
-	 * @param topicId
+	 * @param topic
 	 * @param boardName
 	 */
-	public Board(int boardId, String primaryInfo, Date created, Topic topicId, String boardName) {
+	public Board(int boardId, String primaryInfo, Date created, Topic topic, String boardName) {
 		super();
 		this.boardId = boardId;
 		this.primaryInfo = primaryInfo;
 		this.created = created;
-		this.topicId = topicId;
+		this.topic = topic;
 		this.boardName = boardName;
 	}
 
@@ -131,12 +135,12 @@ public class Board {
 		this.created = created;
 	}
 
-	public Topic getTopicId() {
-		return topicId;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setTopicId(Topic topicId) {
-		this.topicId = topicId;
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 	public String getBoardName() {
@@ -149,11 +153,13 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [boardId=" + boardId + ", primaryInfo=" + primaryInfo + ", created=" + created + ", topicId="
-				+ topicId + ", boardName=" + boardName + ", hashCode()=" + hashCode() + ", getBoardId()=" + getBoardId()
-				+ ", getPrimaryInfo()=" + getPrimaryInfo() + ", getCreated()=" + getCreated() + ", getTopicId()="
-				+ getTopicId() + ", getBoardName()=" + getBoardName() + ", getClass()=" + getClass() + ", toString()="
+		return "Board [boardId=" + boardId + ", primaryInfo=" + primaryInfo + ", created=" + created + ", topic="
+				+ topic + ", boardName=" + boardName + ", hashCode()=" + hashCode() + ", getBoardId()=" + getBoardId()
+				+ ", getPrimaryInfo()=" + getPrimaryInfo() + ", getCreated()=" + getCreated() + ", getTopic()="
+				+ getTopic() + ", getBoardName()=" + getBoardName() + ", getClass()=" + getClass() + ", toString()="
 				+ super.toString() + "]";
 	}
+
+	
 	
 }
