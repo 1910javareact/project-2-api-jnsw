@@ -30,4 +30,9 @@ public class BoardServiceImpl implements BoardService {
 		return bd.findAll();
 	}
 
+	@Override
+	public Board view(Board input){
+		return bd.getBoardId(input);
+	}
+
 }
