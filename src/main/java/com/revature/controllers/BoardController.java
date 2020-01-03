@@ -35,4 +35,9 @@ public class BoardController {
 	public List<Board> view(){
 		return bs.getAllBoards();
 	}
+
+	@GetMapping("/view-board/+id")
+	public Board view(){
+		return bs.getBoardId();
+	}
 }
