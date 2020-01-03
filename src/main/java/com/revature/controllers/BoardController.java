@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Board;
+import com.revature.models.makeBoard;
 import com.revature.services.BoardService;
 
 @RestController
 @RequestMapping("board")
-
 public class BoardController {
 	private BoardService bs;
 	
@@ -26,8 +26,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/create")
-	public Board create(@Valid @RequestBody Board input) {
-		Board b = bs.save(input);
+	public makeBoard create(@Valid @RequestBody makeBoard input) {
+		makeBoard b = bs.save(input);
 		return b;
 	}
 	
