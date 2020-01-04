@@ -21,5 +21,17 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return ud.findUserByUsernameAndPassword(username, password);
 	}
+	
+	@Override
+	public User findUserById(int id) {
+		// TODO Auto-generated method stub
+		return ud.findUserByUserId(id);
+	}
+
+	@Override
+	public User save(User input) {
+		// TODO Auto-generated method stub
+		return ud.save(input);
+	}
 
 }
