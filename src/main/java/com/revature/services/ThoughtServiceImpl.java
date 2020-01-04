@@ -1,7 +1,6 @@
 package com.revature.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,12 @@ public class ThoughtServiceImpl implements ThoughtService {
 	public List<Thought> getThoughts(int input) {
 		// TODO Auto-generated method stub
 		return td.findThoughtsByBoardId(input);
-	}
+	}	
 
+	@Override
+	public Thought saveNewThought(String input) {
+		// TODO Auto-generated method stub
+		return td.save(input);
+	}
+	
 }

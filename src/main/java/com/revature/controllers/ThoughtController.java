@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +25,10 @@ public class ThoughtController {
 	@GetMapping("/view_thouhts/{id}")
 	public List<Thought> view(@RequestParam int input) {
 		return ts.getThoughts(input);
+	}
+	
+	@PutMapping("/")
+	public Thought saveNewThought(@RequestParam String input) {
+		return ts.saveNewThought(input);
 	}
 }
