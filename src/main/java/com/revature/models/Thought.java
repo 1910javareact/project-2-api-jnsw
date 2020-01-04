@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Table(name = "thoughts", schema="TopChat")
 @Entity
 public class Thought {
@@ -22,6 +24,7 @@ public class Thought {
 	@Column(name = "boardId")
 	private int boardId;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "created")
 	private Date created;
 

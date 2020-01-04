@@ -8,6 +8,4 @@ import com.revature.models.Thought;
 public interface ThoughtDao extends JpaRepository<Thought, Integer>{
 
 	List<Thought> findThoughtsByBoardId(int input);
-
-	Thought save(String input);
 }

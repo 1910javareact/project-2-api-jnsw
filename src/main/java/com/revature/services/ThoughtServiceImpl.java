@@ -23,7 +23,7 @@ public class ThoughtServiceImpl implements ThoughtService {
 	}	
 
 	@Override
-	public Thought saveNewThought(String input) {
+	public Thought saveNewThought(Thought input) {
 		// TODO Auto-generated method stub
 		return td.save(input);
 	}

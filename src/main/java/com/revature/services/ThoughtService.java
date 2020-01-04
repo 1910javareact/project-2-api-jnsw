@@ -6,5 +6,5 @@ import com.revature.models.Thought;
 public interface ThoughtService {
 	public List<Thought> getThoughts(int input);
 
-	public Thought saveNewThought(String input); 
+	public Thought saveNewThought(Thought input); 
 }
