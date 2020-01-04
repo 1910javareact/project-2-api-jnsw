@@ -36,7 +36,6 @@ public class UserController {
 		req.getSession().setAttribute("user", u);
 		return u;
 	}
-	
 	@PostMapping("/register")
 	public User register(@Valid @RequestBody User input) {
 		User u = us.save(input);

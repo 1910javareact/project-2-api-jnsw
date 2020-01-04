@@ -6,4 +6,5 @@ import com.revature.models.Board;
 
 public interface BoardDao extends JpaRepository<Board, Integer>{
 
+	Board findBoardByBoardId(int input);
 }

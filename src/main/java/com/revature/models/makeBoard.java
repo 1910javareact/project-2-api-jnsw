@@ -4,24 +4,17 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "board", schema="TopChat")
 @Entity
-@JsonFilter("depth_4")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Board {
-	
+public class makeBoard {
+
 	@Id
 	@Column(name = "boardId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,19 +27,30 @@ public class Board {
 	@Column(name = "created")
 	private Date created;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "topic", referencedColumnName = "topic_id")
-	private Topic topic;
+	@Column(name = "topic")
+	private int topic;
 	
 	@Column(name="boardName")
 	private String boardName;
 
-	/**
-	 * 
-	 */
-	public Board() {
+	public makeBoard() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public makeBoard(int boardId, String primaryInfo, Date created, int topic, String boardName) {
+		super();
+		this.boardId = boardId;
+		this.primaryInfo = primaryInfo;
+		this.created = created;
+		this.topic = topic;
+		this.boardName = boardName;
+	}
+
+	@Override
+	public String toString() {
+		return "makeBoard [boardId=" + boardId + ", primaryInfo=" + primaryInfo + ", created=" + created + ", topic="
+				+ topic + ", boardName=" + boardName + "]";
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class Board {
 		result = prime * result + ((boardName == null) ? 0 : boardName.hashCode());
 		result = prime * result + ((created == null) ? 0 : created.hashCode());
 		result = prime * result + ((primaryInfo == null) ? 0 : primaryInfo.hashCode());
-		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
+		result = prime * result + topic;
 		return result;
 	}
 
@@ -69,7 +73,7 @@ public class Board {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Board other = (Board) obj;
+		makeBoard other = (makeBoard) obj;
 		if (boardId != other.boardId)
 			return false;
 		if (boardName == null) {
@@ -87,28 +91,9 @@ public class Board {
 				return false;
 		} else if (!primaryInfo.equals(other.primaryInfo))
 			return false;
-		if (topic == null) {
-			if (other.topic != null)
-				return false;
-		} else if (!topic.equals(other.topic))
+		if (topic != other.topic)
 			return false;
 		return true;
-	}
-
-	/**
-	 * @param boardId
-	 * @param primaryInfo
-	 * @param created
-	 * @param topic
-	 * @param boardName
-	 */
-	public Board(int boardId, String primaryInfo, Date created, Topic topic, String boardName) {
-		super();
-		this.boardId = boardId;
-		this.primaryInfo = primaryInfo;
-		this.created = created;
-		this.topic = topic;
-		this.boardName = boardName;
 	}
 
 	public int getBoardId() {
@@ -135,11 +120,11 @@ public class Board {
 		this.created = created;
 	}
 
-	public Topic getTopic() {
+	public int getTopic() {
 		return topic;
 	}
 
-	public void setTopic(Topic topic) {
+	public void setTopic(int topic) {
 		this.topic = topic;
 	}
 
@@ -151,15 +136,5 @@ public class Board {
 		this.boardName = boardName;
 	}
 
-	@Override
-	public String toString() {
-		return "Board [boardId=" + boardId + ", primaryInfo=" + primaryInfo + ", created=" + created + ", topic="
-				+ topic + ", boardName=" + boardName + ", hashCode()=" + hashCode() + ", getBoardId()=" + getBoardId()
-				+ ", getPrimaryInfo()=" + getPrimaryInfo() + ", getCreated()=" + getCreated() + ", getTopic()="
-				+ getTopic() + ", getBoardName()=" + getBoardName() + ", getClass()=" + getClass() + ", toString()="
-				+ super.toString() + "]";
-	}
-
-	
 	
 }
