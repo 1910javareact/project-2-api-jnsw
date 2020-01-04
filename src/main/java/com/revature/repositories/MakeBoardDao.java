@@ -6,4 +6,5 @@ import com.revature.models.makeBoard;
 
 public interface MakeBoardDao extends JpaRepository<makeBoard, Integer> {
 
+	makeBoard findBoardByBoardId(int input);
 }

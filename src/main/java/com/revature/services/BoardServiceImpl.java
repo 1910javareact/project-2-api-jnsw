@@ -35,8 +35,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board getBoardById(int input){
-		return bd.findBoardByBoardId(input);
+	public makeBoard getBoardById(int input){
+		return md.findBoardByBoardId(input);
 	}
 
 }

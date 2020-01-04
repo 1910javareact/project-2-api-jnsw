@@ -38,7 +38,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/view-board/{id}")
-	public Board viewById(@RequestParam int input){
+	public makeBoard viewById(@RequestParam int input){
 		return bs.getBoardById(input);
 	}
 }
