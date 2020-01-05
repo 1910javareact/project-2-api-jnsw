@@ -21,12 +21,12 @@ public class Thought {
 	@Column(name = "thought")
 	private String thought;
 	
-	@Column(name = "boardId")
-	private int boardId;
-	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "created")
 	private Date created;
+	
+	@Column(name = "boardId")
+	private int boardId;
 
 	public Thought() {
 		super();

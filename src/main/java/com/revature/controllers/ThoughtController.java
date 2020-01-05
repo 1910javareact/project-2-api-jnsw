@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,12 +25,12 @@ public class ThoughtController {
 		this.ts = ts;
 	}
 	
-	@GetMapping("/view_thoughts/{id}")
+	@GetMapping("/view_thoughts")
 	public List<Thought> view(@RequestParam int input) {
 		return ts.getThoughts(input);
 	}
 	
-	@PutMapping("/")
+	@PostMapping("/")
 	public Thought saveNewThought(@Valid @RequestBody Thought input) {
 		return ts.saveNewThought(input);
 	}

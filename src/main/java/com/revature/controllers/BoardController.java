@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Board;
+import com.revature.models.Make_User_Board;
+import com.revature.models.User_Board;
 import com.revature.models.makeBoard;
 import com.revature.services.BoardService;
 
@@ -41,5 +43,9 @@ public class BoardController {
 	@GetMapping("/view-board")
 	public makeBoard viewById(@RequestParam int input){
 		return bs.getBoardById(input);
+	}
+	@PostMapping("/save-board")
+	public Make_User_Board create(@RequestBody Make_User_Board input) {
+		return bs.saveBoard(input);
 	}
 }

@@ -4,42 +4,33 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "user_board", schema="TopChat")
 @Entity
-@JsonFilter("depth_4")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @IdClass(UserId.class)
-public class User_Board implements Serializable{
+public class Make_User_Board implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	@Id
-	@Column(name = "user_id")
+	@Column(name = "user_Id")
 	private int user_id;
 	
 	@Id
-	@JoinColumn(name = "board_id", referencedColumnName = "boardId")
-	@ManyToOne(fetch = FetchType.EAGER)
-	private makeBoard board_id;
+	@Column(name = "board_id")
+	private int board_id;
 
-	public User_Board() {
+	public Make_User_Board() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User_Board(int user_id, makeBoard board_id) {
+	public Make_User_Board(int user_id, int board_id) {
 		super();
 		this.user_id = user_id;
 		this.board_id = board_id;
@@ -47,14 +38,14 @@ public class User_Board implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User_Board";
+		return "Make_User_Board [user_id=" + user_id + ", board_id=" + board_id + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((board_id == null) ? 0 : board_id.hashCode());
+		result = prime * result + board_id;
 		result = prime * result + user_id;
 		return result;
 	}
@@ -67,11 +58,8 @@ public class User_Board implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User_Board other = (User_Board) obj;
-		if (board_id == null) {
-			if (other.board_id != null)
-				return false;
-		} else if (!board_id.equals(other.board_id))
+		Make_User_Board other = (Make_User_Board) obj;
+		if (board_id != other.board_id)
 			return false;
 		if (user_id != other.user_id)
 			return false;
@@ -86,11 +74,11 @@ public class User_Board implements Serializable{
 		this.user_id = user_id;
 	}
 
-	public makeBoard getBoard_id() {
+	public int getBoard_id() {
 		return board_id;
 	}
 
-	public void setBoard_id(makeBoard board_id) {
+	public void setBoard_id(int board_id) {
 		this.board_id = board_id;
 	}
 
