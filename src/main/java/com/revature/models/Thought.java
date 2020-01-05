@@ -24,7 +24,7 @@ public class Thought {
 	@Column(name = "boardId")
 	private int boardId;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "created")
 	private Date created;
 

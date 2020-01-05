@@ -23,7 +23,7 @@ public class makeBoard {
 	@Column(name = "primaryInfo")
 	private String primaryInfo;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "created")
 	private Date created;
 	

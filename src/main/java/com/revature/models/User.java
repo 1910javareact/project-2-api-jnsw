@@ -32,7 +32,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "created")
 	private Date created;
 	

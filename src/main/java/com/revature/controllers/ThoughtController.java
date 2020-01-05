@@ -25,7 +25,7 @@ public class ThoughtController {
 		this.ts = ts;
 	}
 	
-	@GetMapping("/view_thouhts/{id}")
+	@GetMapping("/view_thoughts/{id}")
 	public List<Thought> view(@RequestParam int input) {
 		return ts.getThoughts(input);
 	}

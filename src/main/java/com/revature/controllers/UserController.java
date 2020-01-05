@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.User;
+import com.revature.models.makeBoard;
 import com.revature.services.UserService;
 
 @RestController
@@ -40,5 +43,9 @@ public class UserController {
 	public User register(@Valid @RequestBody User input) {
 		User u = us.save(input);
 		return u;
+	}
+	@GetMapping("/view-saved/{id}")
+	public List<makeBoard> findBoardById(@PathVariable int id) {
+		return us.findBoardById(id);
 	}
 }
